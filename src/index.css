@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: #0b0b0d;
+    color: #f4f4f5;
+    font-feature-settings: 'cv11', 'ss03', 'ss04';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow: hidden;
+  }
+
+  h1, h2, h3, h4 {
+    letter-spacing: -0.015em;
+  }
+
+  *::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  *::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 4px;
+  }
+  *::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  ::selection {
+    background: rgba(255, 255, 255, 0.12);
+    color: #f4f4f5;
+  }
+}
+
+@layer components {
+  .surface {
+    background: #101013;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .surface-elevated {
+    background: #16161a;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .glass-panel {
+    background: #101013;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .grad-purple {
+    background: #f4f4f5;
+    color: #0b0b0d;
+  }
+
+  .divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.06);
+  }
+}
+
+@layer utilities {
+  .grid-bg {
+    background-image: radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.03) 1px,
+      transparent 1px
+    );
+    background-size: 24px 24px;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}

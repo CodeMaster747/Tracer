@@ -1,0 +1,1 @@
+export { solveGraphicsQuestion } from './parser';
