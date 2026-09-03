@@ -84,7 +84,7 @@ function TfSection({ meta }: { meta: ControlMeta }) {
   const tf = meta.tf!;
   return (
     <PanelSection title="Transfer function" accent={CONTROL_ACCENT} collapsible>
-      <div className="rounded-md border border-border-subtle bg-white/[0.02] px-3 py-2 font-mono text-[12px] leading-relaxed text-text-primary">
+      <div className="rounded-md border border-border-subtle bg-ink/[0.02] px-3 py-2 font-mono text-[12px] leading-relaxed text-text-primary">
         G(s) = {tf.display}
       </div>
       <div className="mt-3 grid grid-cols-1 gap-3">
@@ -156,7 +156,7 @@ function ReductionSection({
         {steps.map((step, i) => (
           <li
             key={i}
-            className="group flex items-start gap-2 rounded-md px-2 py-1.5 hover:bg-white/[0.03] cursor-pointer"
+            className="group flex items-start gap-2 rounded-md px-2 py-1.5 hover:bg-ink/[0.03] cursor-pointer"
             onClick={() => ctx.setStep(Math.min(ctx.totalSteps, (i + 1) * Math.max(1, Math.floor(ctx.totalSteps / steps.length))))}
             title="Scrub canvas to this step"
           >
@@ -308,7 +308,7 @@ function MasonSection({ meta }: { meta: ControlMeta }) {
         </div>
       )}
       {m.transferFunction && (
-        <div className="rounded-md border border-border-subtle bg-white/[0.02] px-3 py-2 font-mono text-[11.5px] text-text-primary">
+        <div className="rounded-md border border-border-subtle bg-ink/[0.02] px-3 py-2 font-mono text-[11.5px] text-text-primary">
           T(s) = {m.transferFunction}
         </div>
       )}

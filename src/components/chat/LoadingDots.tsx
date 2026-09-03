@@ -1,7 +1,7 @@
 export function LoadingDots() {
   return (
     <div className="flex max-w-2xl items-center gap-2.5 rounded-xl border border-border-subtle bg-bg-secondary px-5 py-4">
-      <span className="text-[10.5px] font-medium uppercase tracking-[0.12em] text-text-muted">
+      <span className="u-label">
         Thinking
       </span>
       <div className="flex gap-1">

@@ -50,7 +50,7 @@ export function Sidebar() {
   const groups: NavItem['group'][] = ['main', 'domain', 'system'];
 
   return (
-    <aside className="flex h-full w-60 shrink-0 flex-col border-r border-border-subtle bg-bg-secondary">
+    <aside className="flex h-full w-60 shrink-0 flex-col border-r border-border-subtle bg-bg-tertiary">
       <div className="flex h-14 items-center px-4 border-b border-border-subtle">
         <Logo withText size={22} />
       </div>
@@ -58,7 +58,7 @@ export function Sidebar() {
       <nav className="flex-1 overflow-y-auto px-3 py-4">
         {groups.map((group, gi) => (
           <div key={group} className={cn(gi > 0 && 'mt-6')}>
-            <div className="px-3 mb-2 text-[10.5px] font-medium uppercase tracking-[0.12em] text-text-muted">
+            <div className="px-3 mb-2 u-label">
               {GROUP_LABELS[group]}
             </div>
             <div className="space-y-0.5">
@@ -73,7 +73,7 @@ export function Sidebar() {
       <div className="border-t border-border-subtle p-3 space-y-1">
         {user && (
           <div className="flex items-center gap-3 px-3 py-2.5">
-            <div className="flex h-7 w-7 items-center justify-center rounded-full bg-white/[0.06] border border-border-subtle text-[10.5px] font-semibold text-text-primary">
+            <div className="flex h-7 w-7 items-center justify-center rounded bg-bg-secondary border border-border-subtle font-mono text-[10.5px] font-medium text-text-primary">
               {(user.displayName ?? user.email ?? '?').slice(0, 2).toUpperCase()}
             </div>
             <div className="min-w-0 flex-1">
@@ -88,7 +88,7 @@ export function Sidebar() {
         )}
         <button
           onClick={handleLogout}
-          className="flex w-full items-center gap-3 rounded-md px-3 py-2 text-[13px] font-medium text-text-secondary transition-colors duration-150 hover:bg-white/[0.04] hover:text-text-primary"
+          className="flex w-full items-center gap-3 rounded-md px-3 py-2 text-[13px] font-medium text-text-secondary transition-colors duration-150 hover:bg-ink/[0.04] hover:text-text-primary"
         >
           <IconLogout className="h-4 w-4" />
           Logout
@@ -106,8 +106,8 @@ function NavItemLink({ to, label, Icon }: NavItem) {
         cn(
           'flex items-center gap-3 rounded-md px-3 py-2 text-[13px] font-medium transition-colors duration-150',
           isActive
-            ? 'bg-white/[0.06] text-text-primary'
-            : 'text-text-secondary hover:bg-white/[0.03] hover:text-text-primary'
+            ? 'bg-bg-secondary text-text-primary ring-1 ring-border-subtle'
+            : 'text-text-secondary hover:bg-ink/[0.035] hover:text-text-primary'
         )
       }
     >

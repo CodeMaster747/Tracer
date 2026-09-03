@@ -116,20 +116,18 @@ export function BaseCanvasShell({
       <header className="z-20 flex h-14 items-center gap-3 border-b border-border-subtle bg-bg-secondary px-4">
         <button
           onClick={() => navigate(-1)}
-          className="flex h-8 w-8 items-center justify-center rounded-md text-text-secondary transition-colors duration-150 hover:bg-white/[0.04] hover:text-text-primary"
+          className="flex h-8 w-8 items-center justify-center rounded-md text-text-secondary transition-colors duration-150 hover:bg-ink/[0.04] hover:text-text-primary"
           aria-label="Back"
         >
           <IconArrowLeft className="h-4 w-4" />
         </button>
 
         <div className="min-w-0">
-          <h1 className="truncate text-sm font-medium text-text-primary">
+          <h1 className="truncate font-display text-[17px] font-medium tracking-tight text-text-primary">
             {question.title}
           </h1>
-          <div className="text-[10.5px] text-text-muted">
-            <span className="uppercase tracking-[0.08em]">
-              {module.displayName}
-            </span>
+          <div className="font-mono text-[10px] uppercase tracking-[0.12em] text-text-muted">
+            <span>{module.displayName}</span>
             {metaLine && (
               <>
                 <span className="mx-1.5 text-text-dim">·</span>
@@ -149,7 +147,7 @@ export function BaseCanvasShell({
 
         <button
           onClick={() => setPaletteOpen(true)}
-          className="hidden h-9 items-center gap-2 rounded-lg border border-border-subtle bg-white/[0.02] px-3 text-[12px] text-text-secondary transition-colors duration-150 hover:bg-white/[0.04] hover:text-text-primary md:inline-flex"
+          className="hidden h-9 items-center gap-2 rounded-lg border border-border-subtle bg-ink/[0.02] px-3 text-[12px] text-text-secondary transition-colors duration-150 hover:bg-ink/[0.04] hover:text-text-primary md:inline-flex"
           aria-label="Open command palette"
         >
           <svg
@@ -179,29 +177,6 @@ export function BaseCanvasShell({
           </kbd>
         </button>
 
-        <StepNavigator
-          current={playback.currentStep}
-          total={totalSteps}
-          playing={playback.playing}
-          onSet={playback.setStep}
-          onPrev={playback.prev}
-          onPlayPause={playback.playPause}
-          onNext={playback.next}
-        />
-
-        <button
-          onClick={playback.drawAndShow}
-          className={cn(
-            'inline-flex h-9 items-center gap-2 rounded-lg px-4 text-[13px] font-medium transition-colors duration-150',
-            playback.drawAndShowMode
-              ? 'bg-white/[0.08] text-text-primary border border-border-default'
-              : 'bg-text-primary text-bg-primary hover:bg-white'
-          )}
-        >
-          <IconEye className="h-3.5 w-3.5" />
-          {playback.drawAndShowMode ? 'Showing…' : 'Draw & Show'}
-        </button>
-
         <Button
           variant="secondary"
           size="md"
@@ -219,7 +194,7 @@ export function BaseCanvasShell({
           <LeftSidebar ctx={ctx} />
         </aside>
 
-        <div className="flex-1 overflow-hidden">
+        <div className="flex-1 overflow-hidden bg-bg-sunken">
           <BaseCanvasViewport ref={svgRef} viewport={viewport}>
             <CanvasContent ctx={ctx} />
           </BaseCanvasViewport>
@@ -229,6 +204,31 @@ export function BaseCanvasShell({
           <RightInspector ctx={ctx} />
         </aside>
       </div>
+
+      <footer className="flex h-14 shrink-0 items-center gap-4 border-t border-border-subtle bg-bg-secondary px-4">
+        <StepNavigator
+          current={playback.currentStep}
+          total={totalSteps}
+          playing={playback.playing}
+          onSet={playback.setStep}
+          onPrev={playback.prev}
+          onPlayPause={playback.playPause}
+          onNext={playback.next}
+        />
+
+        <button
+          onClick={playback.drawAndShow}
+          className={cn(
+            'inline-flex h-9 shrink-0 items-center gap-2 rounded-lg px-4 text-[13px] font-medium transition-colors duration-150',
+            playback.drawAndShowMode
+              ? 'border border-border-default bg-bg-secondary text-text-primary'
+              : 'bg-accent-primary text-white hover:bg-accent-secondary'
+          )}
+        >
+          <IconEye className="h-3.5 w-3.5" />
+          {playback.drawAndShowMode ? 'Showing…' : 'Draw & Show'}
+        </button>
+      </footer>
 
       <QuestionModal
         open={questionOpen}
@@ -257,7 +257,7 @@ export function ShellLoadingScreen() {
         className="flex flex-col items-center gap-4"
       >
         <div className="relative h-10 w-10">
-          <div className="absolute inset-0 rounded-full border-2 border-white/[0.06]" />
+          <div className="absolute inset-0 rounded-full border-2 border-ink/[0.10]" />
           <motion.div
             className="absolute inset-0 rounded-full border-2 border-transparent border-t-text-secondary"
             animate={{ rotate: 360 }}

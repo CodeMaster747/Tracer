@@ -74,7 +74,7 @@ function BlockBody({ block }: { block: WorkspaceContentBlock }) {
           {block.lines.map((line, i) => (
             <div
               key={i}
-              className="overflow-x-auto rounded-md border border-border-subtle bg-white/[0.02] px-3 py-2 font-mono text-[12px] leading-relaxed text-text-primary"
+              className="overflow-x-auto rounded-md border border-border-subtle bg-ink/[0.02] px-3 py-2 font-mono text-[12px] leading-relaxed text-text-primary"
             >
               {line}
             </div>
@@ -143,7 +143,7 @@ function TableBody({
         </thead>
         <tbody>
           {rows.map((row, r) => (
-            <tr key={r} className="hover:bg-white/[0.02]">
+            <tr key={r} className="hover:bg-ink/[0.02]">
               {row.map((cell, c) => (
                 <td
                   key={c}
@@ -170,7 +170,7 @@ function TableBody({
 function MatrixBody({ name, data }: { name: string; data: number[][] }) {
   return (
     <div className="space-y-1.5">
-      <div className="text-[10.5px] uppercase tracking-[0.12em] text-text-muted">
+      <div className="u-label">
         {name}
       </div>
       <div className="-mx-1 overflow-x-auto">

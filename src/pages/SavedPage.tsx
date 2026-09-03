@@ -1,26 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import { useAuthStore } from '@/stores/auth.store';
 import { listSaved, setSaved } from '@/lib/storage';
-import type { Domain, SolvedQuestion } from '@/engines/types';
-import {
-  IconBookmark,
-  IconCompass,
-  IconAutomata,
-  IconControl,
-  IconEye,
-} from '@/components/ui/Icon';
+import type { SolvedQuestion } from '@/engines/types';
+import { IconBookmark } from '@/components/ui/Icon';
 import { Button } from '@/components/ui/Button';
-
-const DOMAIN_META: Record<
-  Domain,
-  { label: string; Icon: React.ComponentType<React.SVGProps<SVGSVGElement>> }
-> = {
-  graphics: { label: 'Graphics', Icon: IconCompass },
-  automata: { label: 'Automata', Icon: IconAutomata },
-  control: { label: 'Control', Icon: IconControl },
-};
+import { PageShell } from '@/components/layout/PageShell';
+import { QuestionTable } from '@/components/question/QuestionTable';
 
 export default function SavedPage() {
   const navigate = useNavigate();
@@ -43,87 +29,42 @@ export default function SavedPage() {
   };
 
   return (
-    <div className="h-full overflow-y-auto">
-      <motion.div
-        initial={{ opacity: 0, y: 8 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.25 }}
-        className="mx-auto max-w-4xl px-8 py-12"
-      >
-        <header className="mb-8">
-          <h1 className="text-2xl font-semibold tracking-tight">Saved</h1>
-          <p className="mt-1.5 text-sm text-text-secondary">
-            Questions you've bookmarked for later
+    <PageShell title="Saved" subtitle="Questions you've bookmarked for later">
+      {loading ? (
+        <div className="font-mono text-[12px] text-text-muted">Loading…</div>
+      ) : items.length === 0 ? (
+        <div className="border-y border-border-subtle px-8 py-16 text-center">
+          <div className="mx-auto flex h-10 w-10 items-center justify-center rounded border border-border-default">
+            <IconBookmark className="h-4 w-4 text-text-secondary" />
+          </div>
+          <h2 className="mt-4 font-display text-[19px] font-normal text-text-primary">
+            Nothing saved yet
+          </h2>
+          <p className="mt-1.5 text-[13px] text-text-secondary">
+            When you ask a question and click Save, it&apos;ll appear here.
           </p>
-        </header>
-
-        {loading ? (
-          <div className="text-sm text-text-muted">Loading…</div>
-        ) : items.length === 0 ? (
-          <div className="rounded-xl border border-border-subtle bg-bg-secondary px-8 py-16 text-center">
-            <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-lg border border-border-subtle bg-white/[0.03]">
-              <IconBookmark className="h-4 w-4 text-text-secondary" />
-            </div>
-            <h2 className="mt-4 text-sm font-semibold text-text-primary">
-              Nothing saved yet
-            </h2>
-            <p className="mt-1.5 text-sm text-text-secondary">
-              When you ask a question and click Save, it'll appear here.
-            </p>
-          </div>
-        ) : (
-          <div className="overflow-hidden rounded-xl border border-border-subtle bg-bg-secondary">
-            {items.map((q, i) => (
-              <div key={q.id}>
-                {i > 0 && <div className="h-px bg-border-subtle" />}
-                <SavedRow
-                  q={q}
-                  onOpen={() => navigate(`/app/canvas/${q.id}`)}
-                  onUnsave={() => handleUnsave(q.id)}
-                />
-              </div>
-            ))}
-          </div>
-        )}
-      </motion.div>
-    </div>
-  );
-}
-
-function SavedRow({
-  q,
-  onOpen,
-  onUnsave,
-}: {
-  q: SolvedQuestion;
-  onOpen: () => void;
-  onUnsave: () => void;
-}) {
-  const { label, Icon } = DOMAIN_META[q.domain];
-  return (
-    <div className="group flex items-center gap-4 px-5 py-4 transition-colors duration-150 hover:bg-white/[0.02]">
-      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-border-subtle bg-white/[0.03]">
-        <Icon className="h-4 w-4 text-text-secondary" />
-      </div>
-      <div className="min-w-0 flex-1">
-        <div className="truncate text-sm font-medium text-text-primary">
-          {q.title}
         </div>
-        <div className="mt-1 text-xs text-text-muted">{label}</div>
-      </div>
-      <div className="flex gap-2">
-        <Button size="sm" variant="ghost" onClick={onUnsave}>
-          Unsave
-        </Button>
-        <Button
-          size="sm"
-          variant="secondary"
-          onClick={onOpen}
-          leftIcon={<IconEye className="h-3.5 w-3.5" />}
-        >
-          Open
-        </Button>
-      </div>
-    </div>
+      ) : (
+        <QuestionTable
+          items={items}
+          dateLabel="Saved"
+          onOpen={(q) => navigate(`/app/canvas/${q.id}`)}
+          actions={(q) => (
+            <>
+              <Button size="sm" variant="ghost" onClick={() => handleUnsave(q.id)}>
+                Unsave
+              </Button>
+              <Button
+                size="sm"
+                variant="secondary"
+                onClick={() => navigate(`/app/canvas/${q.id}`)}
+              >
+                Open
+              </Button>
+            </>
+          )}
+        />
+      )}
+    </PageShell>
   );
 }

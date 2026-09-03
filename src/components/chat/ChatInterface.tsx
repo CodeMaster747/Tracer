@@ -56,7 +56,7 @@ export function ChatInterface({ domain, title, subtitle, Icon }: Props) {
   return (
     <div className="flex h-full flex-col">
       <header className="flex items-center gap-3 border-b border-border-subtle px-8 py-4">
-        <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-border-subtle bg-white/[0.03]">
+        <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-border-subtle bg-ink/[0.03]">
           <Icon className="h-4 w-4 text-text-secondary" />
         </div>
         <div className="min-w-0">

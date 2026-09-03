@@ -82,11 +82,11 @@ export default function HomePage() {
 
 function TopNav({ onStart }: { onStart: () => void }) {
   return (
-    <header className="sticky top-0 z-50 border-b border-white/[0.06] bg-bg-primary/80 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-ink/[0.10] bg-bg-primary/80 backdrop-blur-xl">
       <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-6 lg:px-10">
         <Link to="/" className="inline-flex items-center gap-2.5">
           <Logo size={22} />
-          <span className="text-[14px] font-semibold tracking-tight">
+          <span className="font-display text-[16px] font-medium tracking-tight">
             Tracer
           </span>
         </Link>
@@ -112,7 +112,7 @@ function TopNav({ onStart }: { onStart: () => void }) {
         </nav>
         <button
           onClick={onStart}
-          className="inline-flex h-8 items-center rounded-lg border border-white/[0.08] bg-white/[0.04] px-3.5 text-[13px] font-medium text-text-primary transition-colors duration-150 hover:border-white/[0.16] hover:bg-white/[0.07]"
+          className="inline-flex h-8 items-center rounded-lg border border-ink/[0.13] bg-ink/[0.04] px-3.5 text-[13px] font-medium text-text-primary transition-colors duration-150 hover:border-ink/[0.22] hover:bg-ink/[0.07]"
         >
           Start engineering
         </button>
@@ -127,16 +127,16 @@ function TopNav({ onStart }: { onStart: () => void }) {
 
 function Hero({ onStart }: { onStart: () => void }) {
   return (
-    <section className="relative overflow-hidden border-b border-white/[0.06]">
+    <section className="relative overflow-hidden border-b border-ink/[0.10]">
       <BackgroundGrid />
-      <div className="pointer-events-none absolute inset-x-0 -top-32 mx-auto h-[480px] max-w-5xl bg-[radial-gradient(ellipse_at_center,_rgba(255,255,255,0.06),_transparent_60%)]" />
+      <div className="pointer-events-none absolute inset-x-0 -top-32 mx-auto h-[480px] max-w-5xl bg-[radial-gradient(ellipse_at_center,_rgba(43,85,192,0.06),_transparent_60%)]" />
 
       <div className="relative mx-auto max-w-7xl px-6 py-24 lg:px-10 lg:py-32">
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1 text-[11px] font-medium uppercase tracking-[0.14em] text-text-secondary"
+          className="mb-8 inline-flex items-center gap-2 rounded-full border border-ink/[0.13] bg-ink/[0.03] px-3 py-1 text-[11px] font-medium uppercase tracking-[0.14em] text-text-secondary"
         >
           <span className="h-1.5 w-1.5 rounded-full bg-emerald-400/80" />
           Deterministic engine — no AI guesswork
@@ -146,7 +146,7 @@ function Hero({ onStart }: { onStart: () => void }) {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.05 }}
-          className="max-w-4xl text-balance text-[40px] font-semibold leading-[1.04] tracking-[-0.025em] text-text-primary sm:text-5xl lg:text-6xl"
+          className="max-w-4xl text-balance font-display text-[44px] font-normal leading-[1.08] tracking-[-0.02em] text-text-primary sm:text-[54px] lg:text-[64px]"
         >
           A precision workspace for engineering problems.
         </motion.h1>
@@ -171,7 +171,7 @@ function Hero({ onStart }: { onStart: () => void }) {
         >
           <button
             onClick={onStart}
-            className="group inline-flex h-11 items-center gap-2 rounded-lg bg-text-primary px-5 text-sm font-medium text-bg-primary transition-colors duration-150 hover:bg-white"
+            className="group inline-flex h-11 items-center gap-2 rounded-lg bg-accent-primary px-5 text-sm font-medium text-white transition-colors duration-150 hover:bg-accent-secondary"
           >
             Start engineering
             <svg
@@ -210,13 +210,13 @@ function Hero({ onStart }: { onStart: () => void }) {
 
 function HeroSchematic() {
   return (
-    <div className="relative overflow-hidden rounded-xl border border-white/[0.06] bg-bg-secondary">
-      <div className="grid grid-cols-3 divide-x divide-white/[0.06] text-[10.5px] font-mono uppercase tracking-[0.12em] text-text-muted">
+    <div className="relative overflow-hidden rounded-xl border border-ink/[0.10] bg-bg-secondary">
+      <div className="grid grid-cols-3 divide-x divide-ink/[0.10] text-[10.5px] font-mono uppercase tracking-[0.12em] text-text-muted">
         <div className="px-5 py-3">Graphics · Engine</div>
         <div className="px-5 py-3">Automata · Engine</div>
         <div className="px-5 py-3">Control · Engine</div>
       </div>
-      <div className="grid grid-cols-3 divide-x divide-white/[0.06] border-t border-white/[0.06]">
+      <div className="grid grid-cols-3 divide-x divide-ink/[0.10] border-t border-ink/[0.10]">
         <div className="aspect-[5/3] p-4">
           <GraphicsVisual compact />
         </div>
@@ -260,11 +260,11 @@ function HowItWorks() {
   return (
     <section
       id="workflow"
-      className="relative border-b border-white/[0.06] py-24 lg:py-28"
+      className="relative border-b border-ink/[0.10] py-24 lg:py-28"
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <SectionEyebrow>How it works</SectionEyebrow>
-        <h2 className="mt-3 max-w-2xl text-balance text-3xl font-semibold tracking-tight text-text-primary sm:text-4xl">
+        <h2 className="mt-3 max-w-2xl text-balance font-display text-[32px] font-normal tracking-tight text-text-primary sm:text-[40px]">
           Three stages from raw question to verified drawing.
         </h2>
         <p className="mt-4 max-w-xl text-balance text-[15px] leading-relaxed text-text-secondary">
@@ -272,21 +272,21 @@ function HowItWorks() {
           branches, no probabilistic shortcuts, no hallucinated geometry.
         </p>
 
-        <div className="mt-12 grid gap-px overflow-hidden rounded-xl border border-white/[0.06] bg-white/[0.06] md:grid-cols-3">
+        <div className="mt-12 grid gap-px overflow-hidden rounded-xl border border-ink/[0.10] bg-ink/[0.06] md:grid-cols-3">
           {steps.map((s) => (
             <div
               key={s.id}
               className="bg-bg-primary p-8 transition-colors duration-150 hover:bg-bg-secondary"
             >
               <div className="flex items-center justify-between">
-                <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/[0.08] bg-white/[0.03] text-text-secondary">
+                <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-ink/[0.13] bg-ink/[0.03] text-text-secondary">
                   {s.icon}
                 </div>
                 <span className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-text-muted">
                   Step {s.id}
                 </span>
               </div>
-              <h3 className="mt-8 text-base font-semibold tracking-tight text-text-primary">
+              <h3 className="mt-8 font-display text-[20px] font-medium tracking-tight text-text-primary">
                 {s.title}
               </h3>
               <p className="mt-2 text-[13.5px] leading-relaxed text-text-secondary">
@@ -348,7 +348,7 @@ function ShowcaseSection({
     <section
       ref={sectionRef}
       id={index === 1 ? 'modules' : undefined}
-      className="relative border-b border-white/[0.06] py-24 lg:py-32"
+      className="relative border-b border-ink/[0.10] py-24 lg:py-32"
     >
       <BackgroundGrid faint />
       <div
@@ -364,7 +364,7 @@ function ShowcaseSection({
           )}
         >
           <SectionEyebrow>{eyebrow}</SectionEyebrow>
-          <h2 className="mt-3 text-balance text-3xl font-semibold leading-tight tracking-tight text-text-primary sm:text-4xl lg:text-[44px]">
+          <h2 className="mt-3 text-balance font-display text-[32px] font-normal leading-tight tracking-tight text-text-primary sm:text-[40px] lg:text-[46px]">
             {title}
           </h2>
           <p className="mt-4 max-w-md text-[15px] leading-relaxed text-text-secondary">
@@ -376,7 +376,7 @@ function ShowcaseSection({
                 key={b}
                 className="flex items-start gap-3 text-[13.5px] text-text-secondary"
               >
-                <span className="mt-[9px] h-px w-4 bg-white/20" />
+                <span className="mt-[9px] h-px w-4 bg-ink/20" />
                 <span>{b}</span>
               </li>
             ))}
@@ -420,12 +420,12 @@ function TiltedCard({
           transformStyle: 'preserve-3d',
           transformOrigin: align === 'left' ? '100% 50%' : '0% 50%',
         }}
-        className="relative overflow-hidden rounded-xl border border-white/[0.08] bg-bg-secondary"
+        className="relative overflow-hidden rounded-xl border border-ink/[0.13] bg-bg-secondary"
       >
-        <div className="flex h-9 items-center gap-2 border-b border-white/[0.06] bg-bg-tertiary/40 px-4">
-          <span className="h-2 w-2 rounded-full bg-white/[0.08]" />
-          <span className="h-2 w-2 rounded-full bg-white/[0.08]" />
-          <span className="h-2 w-2 rounded-full bg-white/[0.08]" />
+        <div className="flex h-9 items-center gap-2 border-b border-ink/[0.10] bg-bg-tertiary/40 px-4">
+          <span className="h-2 w-2 rounded-full bg-ink/[0.08]" />
+          <span className="h-2 w-2 rounded-full bg-ink/[0.08]" />
+          <span className="h-2 w-2 rounded-full bg-ink/[0.08]" />
           <span className="ml-3 font-mono text-[10px] uppercase tracking-[0.14em] text-text-muted">
             tracer · canvas
           </span>
@@ -457,7 +457,7 @@ function GraphicsVisual({ compact = false }: { compact?: boolean }) {
           <path
             d="M 20 0 L 0 0 0 20"
             fill="none"
-            stroke="rgba(255,255,255,0.05)"
+            stroke="rgba(20,23,26,0.05)"
             strokeWidth="0.5"
           />
         </pattern>
@@ -469,14 +469,14 @@ function GraphicsVisual({ compact = false }: { compact?: boolean }) {
         y1="125"
         x2="400"
         y2="125"
-        stroke="rgba(255,255,255,0.2)"
+        stroke="rgba(20,23,26,0.2)"
         strokeWidth="0.8"
         strokeDasharray="4 4"
       />
       <text
         x="380"
         y="120"
-        fill="rgba(255,255,255,0.4)"
+        fill="rgba(20,23,26,0.4)"
         fontSize="9"
         fontFamily="JetBrains Mono, monospace"
         textAnchor="end"
@@ -486,7 +486,7 @@ function GraphicsVisual({ compact = false }: { compact?: boolean }) {
 
       {/* Isometric cube construction */}
       <g
-        stroke="rgba(255,255,255,0.85)"
+        stroke="rgba(20,23,26,0.85)"
         strokeWidth="1.1"
         fill="none"
         strokeLinecap="round"
@@ -501,7 +501,7 @@ function GraphicsVisual({ compact = false }: { compact?: boolean }) {
 
       {/* Construction projectors */}
       <g
-        stroke="rgba(255,255,255,0.25)"
+        stroke="rgba(20,23,26,0.25)"
         strokeWidth="0.6"
         strokeDasharray="3 3"
       >
@@ -514,9 +514,9 @@ function GraphicsVisual({ compact = false }: { compact?: boolean }) {
       {/* Dimension marks */}
       {!compact && (
         <g
-          stroke="rgba(255,255,255,0.4)"
+          stroke="rgba(20,23,26,0.4)"
           strokeWidth="0.6"
-          fill="rgba(255,255,255,0.55)"
+          fill="rgba(20,23,26,0.55)"
           fontSize="9"
           fontFamily="JetBrains Mono, monospace"
         >
@@ -535,7 +535,7 @@ function GraphicsVisual({ compact = false }: { compact?: boolean }) {
       )}
 
       {/* Vertex markers */}
-      <g fill="rgba(255,255,255,0.95)">
+      <g fill="rgba(20,23,26,0.95)">
         {[
           [200, 55],
           [270, 90],
@@ -572,7 +572,7 @@ function AutomataVisual({ compact = false }: { compact?: boolean }) {
           <path
             d="M 20 0 L 0 0 0 20"
             fill="none"
-            stroke="rgba(255,255,255,0.04)"
+            stroke="rgba(20,23,26,0.04)"
             strokeWidth="0.5"
           />
         </pattern>
@@ -585,7 +585,7 @@ function AutomataVisual({ compact = false }: { compact?: boolean }) {
           markerHeight="6"
           orient="auto-start-reverse"
         >
-          <path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(255,255,255,0.8)" />
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(20,23,26,0.8)" />
         </marker>
       </defs>
       <rect width="400" height="250" fill="url(#a-grid)" />
@@ -596,14 +596,14 @@ function AutomataVisual({ compact = false }: { compact?: boolean }) {
         y1="125"
         x2="48"
         y2="125"
-        stroke="rgba(255,255,255,0.8)"
+        stroke="rgba(20,23,26,0.8)"
         strokeWidth="1.1"
         markerEnd="url(#arr)"
       />
 
       {/* Transitions */}
       <g
-        stroke="rgba(255,255,255,0.75)"
+        stroke="rgba(20,23,26,0.75)"
         strokeWidth="1.1"
         fill="none"
       >
@@ -617,7 +617,7 @@ function AutomataVisual({ compact = false }: { compact?: boolean }) {
       {/* Transition labels */}
       {!compact && (
         <g
-          fill="rgba(255,255,255,0.6)"
+          fill="rgba(20,23,26,0.6)"
           fontSize="10"
           fontFamily="JetBrains Mono, monospace"
         >
@@ -636,8 +636,8 @@ function AutomataVisual({ compact = false }: { compact?: boolean }) {
             cx={s.x}
             cy={s.y}
             r="22"
-            fill="#0a0a0c"
-            stroke="rgba(255,255,255,0.85)"
+            fill="#ffffff"
+            stroke="rgba(20,23,26,0.85)"
             strokeWidth="1.2"
           />
           {s.accepting && (
@@ -646,14 +646,14 @@ function AutomataVisual({ compact = false }: { compact?: boolean }) {
               cy={s.y}
               r="17"
               fill="none"
-              stroke="rgba(255,255,255,0.85)"
+              stroke="rgba(20,23,26,0.85)"
               strokeWidth="1.2"
             />
           )}
           <text
             x={s.x}
             y={s.y + 4}
-            fill="rgba(255,255,255,0.95)"
+            fill="rgba(20,23,26,0.95)"
             fontSize="11"
             fontFamily="JetBrains Mono, monospace"
             textAnchor="middle"
@@ -696,7 +696,7 @@ function ControlVisual({ compact = false }: { compact?: boolean }) {
           <path
             d="M 20 0 L 0 0 0 20"
             fill="none"
-            stroke="rgba(255,255,255,0.04)"
+            stroke="rgba(20,23,26,0.04)"
             strokeWidth="0.5"
           />
         </pattern>
@@ -705,7 +705,7 @@ function ControlVisual({ compact = false }: { compact?: boolean }) {
 
       {/* Magnitude plot axes */}
       <g
-        stroke="rgba(255,255,255,0.3)"
+        stroke="rgba(20,23,26,0.3)"
         strokeWidth="0.8"
         fill="none"
       >
@@ -718,7 +718,7 @@ function ControlVisual({ compact = false }: { compact?: boolean }) {
       {/* Labels */}
       {!compact && (
         <g
-          fill="rgba(255,255,255,0.5)"
+          fill="rgba(20,23,26,0.5)"
           fontSize="9"
           fontFamily="JetBrains Mono, monospace"
         >
@@ -732,7 +732,7 @@ function ControlVisual({ compact = false }: { compact?: boolean }) {
       <polyline
         points={points}
         fill="none"
-        stroke="rgba(255,255,255,0.9)"
+        stroke="rgba(20,23,26,0.9)"
         strokeWidth="1.4"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -743,7 +743,7 @@ function ControlVisual({ compact = false }: { compact?: boolean }) {
         y1="68"
         x2="200"
         y2="68"
-        stroke="rgba(255,255,255,0.3)"
+        stroke="rgba(20,23,26,0.3)"
         strokeWidth="0.8"
         strokeDasharray="3 3"
       />
@@ -752,7 +752,7 @@ function ControlVisual({ compact = false }: { compact?: boolean }) {
         y1="68"
         x2="360"
         y2="108"
-        stroke="rgba(255,255,255,0.3)"
+        stroke="rgba(20,23,26,0.3)"
         strokeWidth="0.8"
         strokeDasharray="3 3"
       />
@@ -761,7 +761,7 @@ function ControlVisual({ compact = false }: { compact?: boolean }) {
       <polyline
         points={phasePoints}
         fill="none"
-        stroke="rgba(255,255,255,0.9)"
+        stroke="rgba(20,23,26,0.9)"
         strokeWidth="1.4"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -773,7 +773,7 @@ function ControlVisual({ compact = false }: { compact?: boolean }) {
         y1="20"
         x2="200"
         y2="225"
-        stroke="rgba(255,255,255,0.15)"
+        stroke="rgba(20,23,26,0.15)"
         strokeWidth="0.6"
         strokeDasharray="2 4"
       />
@@ -781,7 +781,7 @@ function ControlVisual({ compact = false }: { compact?: boolean }) {
         <text
           x="204"
           y="30"
-          fill="rgba(255,255,255,0.5)"
+          fill="rgba(20,23,26,0.5)"
           fontSize="9"
           fontFamily="JetBrains Mono, monospace"
         >
@@ -829,7 +829,7 @@ function Footer() {
   ];
 
   return (
-    <footer className="border-t border-white/[0.06] bg-bg-primary">
+    <footer className="border-t border-ink/[0.10] bg-bg-primary">
       <div className="mx-auto grid max-w-7xl gap-12 px-6 py-16 sm:grid-cols-2 lg:grid-cols-12 lg:px-10">
         <div className="sm:col-span-2 lg:col-span-6">
           <Logo size={22} />
@@ -862,7 +862,7 @@ function Footer() {
           </div>
         ))}
       </div>
-      <div className="border-t border-white/[0.06]">
+      <div className="border-t border-ink/[0.10]">
         <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-3 px-6 py-5 text-xs text-text-muted lg:flex-row lg:items-center lg:px-10">
           <div>© 2026 Tracer. Engineering, traced.</div>
           <div className="flex items-center gap-6">
@@ -913,7 +913,7 @@ function BackgroundGrid({ faint = false }: { faint?: boolean }) {
       )}
       style={{
         backgroundImage:
-          'linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px)',
+          'linear-gradient(rgba(20,23,26,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(20,23,26,0.035) 1px, transparent 1px)',
         backgroundSize: '64px 64px',
         maskImage:
           'radial-gradient(ellipse at center, rgba(0,0,0,1) 30%, transparent 80%)',

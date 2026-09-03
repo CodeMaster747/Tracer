@@ -39,7 +39,7 @@ export function PanelSection({
         className={cn(
           'flex items-center justify-between px-5 py-3',
           collapsible &&
-            'cursor-pointer select-none hover:bg-white/[0.02] transition-colors duration-150'
+            'cursor-pointer select-none hover:bg-ink/[0.02] transition-colors duration-150'
         )}
         onClick={() => collapsible && setOpen((o) => !o)}
       >
@@ -47,7 +47,7 @@ export function PanelSection({
           {collapsible && (
             <Caret open={isOpen} />
           )}
-          <span className="text-[10.5px] font-medium uppercase tracking-[0.12em] text-text-muted">
+          <span className="u-label">
             {title}
           </span>
         </div>

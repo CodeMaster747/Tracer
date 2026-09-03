@@ -113,7 +113,7 @@ function getCommands(ctx: WorkspaceContext): Command[] {
 export const StateMachineModule: WorkspaceModule = {
   id: 'automata',
   displayName: 'Automata',
-  accent: { hex: '#7DA9E7', label: 'slate blue' },
+  accent: { hex: '#1c6b84', label: 'signal teal' },
   getViewport,
   getTotalSteps: (q) => q.strokes.length,
   getMetaLine,

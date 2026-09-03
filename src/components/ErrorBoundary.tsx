@@ -37,7 +37,7 @@ export class ErrorBoundary extends Component<Props, State> {
             <p className="mt-2 text-sm text-text-secondary">
               {this.state.error?.message ?? 'An unexpected error occurred while rendering.'}
             </p>
-            <pre className="mt-4 max-h-40 overflow-auto rounded-lg border border-border-subtle bg-white/[0.02] p-3 text-left text-xs text-text-muted">
+            <pre className="mt-4 max-h-40 overflow-auto rounded-lg border border-border-subtle bg-ink/[0.02] p-3 text-left text-xs text-text-muted">
               {this.state.error?.stack}
             </pre>
             <div className="mt-5 flex justify-center gap-2">

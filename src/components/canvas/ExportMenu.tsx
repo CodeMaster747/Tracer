@@ -56,7 +56,7 @@ export function ExportMenu({ onExportPng, onExportPdf }: Props) {
             <button
               onClick={wrap('png', onExportPng)}
               disabled={busy !== null}
-              className="flex w-full items-center justify-between px-3 py-2.5 text-[13px] text-text-primary transition-colors duration-150 hover:bg-white/[0.04] disabled:opacity-50"
+              className="flex w-full items-center justify-between px-3 py-2.5 text-[13px] text-text-primary transition-colors duration-150 hover:bg-ink/[0.04] disabled:opacity-50"
             >
               <span>PNG image</span>
               {busy === 'png' && (
@@ -67,7 +67,7 @@ export function ExportMenu({ onExportPng, onExportPdf }: Props) {
             <button
               onClick={wrap('pdf', onExportPdf)}
               disabled={busy !== null}
-              className="flex w-full items-center justify-between px-3 py-2.5 text-[13px] text-text-primary transition-colors duration-150 hover:bg-white/[0.04] disabled:opacity-50"
+              className="flex w-full items-center justify-between px-3 py-2.5 text-[13px] text-text-primary transition-colors duration-150 hover:bg-ink/[0.04] disabled:opacity-50"
             >
               <span>PDF document</span>
               {busy === 'pdf' && (

@@ -12,7 +12,7 @@ export function AutomataInspector({ ctx }: ModuleSlotProps) {
   return (
     <div>
       <header className="border-b border-border-subtle px-5 py-4">
-        <div className="text-[10.5px] font-medium uppercase tracking-[0.12em] text-text-muted">
+        <div className="u-label">
           State inspector
         </div>
       </header>
@@ -68,7 +68,7 @@ function StateDetails({ meta, state }: { meta: AutomataMeta; state: string }) {
   return (
     <div>
       <div className="px-5 py-4">
-        <div className="text-[10.5px] uppercase tracking-[0.12em] text-text-muted">
+        <div className="u-label">
           State
         </div>
         <div
@@ -182,7 +182,7 @@ function ProgressSummary({
           {ctx.currentStep} / {ctx.totalSteps}
         </span>
       </div>
-      <div className="mt-2 h-1 w-full overflow-hidden rounded-full bg-white/[0.04]">
+      <div className="mt-2 h-1 w-full overflow-hidden rounded-full bg-ink/[0.04]">
         <div
           className="h-full transition-all duration-300 ease-out"
           style={{

@@ -112,7 +112,7 @@ export const BaseCanvasViewport = forwardRef<SVGSVGElement, Props>(
         className="relative h-full w-full overflow-hidden bg-bg-primary"
         style={{
           backgroundImage:
-            'radial-gradient(circle, rgba(255,255,255,0.045) 1px, transparent 1px)',
+            'radial-gradient(circle, rgba(20,23,26,0.045) 1px, transparent 1px)',
           backgroundSize: '20px 20px',
         }}
       >
@@ -162,7 +162,7 @@ export const BaseCanvasViewport = forwardRef<SVGSVGElement, Props>(
             viewBox={`0 0 ${viewport.widthUnits} ${viewport.heightUnits}`}
             style={{
               background: bg,
-              border: showPaperEdge ? '1px solid rgba(255,255,255,0.08)' : 'none',
+              border: showPaperEdge ? '1px solid rgba(20,23,26,0.08)' : 'none',
               borderRadius: '2px',
             }}
           >

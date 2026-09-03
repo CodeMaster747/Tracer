@@ -21,12 +21,12 @@ export function MessageBubble({ message, onView, onSave }: Props) {
       <div
         className={
           isUser
-            ? 'max-w-2xl rounded-xl bg-white/[0.06] border border-border-subtle px-4 py-3 text-sm leading-relaxed text-text-primary'
+            ? 'max-w-2xl rounded-xl bg-ink/[0.06] border border-border-subtle px-4 py-3 text-sm leading-relaxed text-text-primary'
             : 'max-w-2xl rounded-xl bg-bg-secondary border border-border-subtle px-5 py-4 text-sm leading-relaxed text-text-primary'
         }
       >
         {!isUser && (
-          <div className="mb-2 text-[10.5px] font-medium uppercase tracking-[0.12em] text-text-muted">
+          <div className="mb-2 u-label">
             Solution Summary
           </div>
         )}
