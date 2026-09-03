@@ -345,10 +345,16 @@ export function buildHelix(spec: HelixSpec): {
   const totalH = spec.pitchMm * spec.turns;
   drawTitle(builder, `Cylindrical Helix — Ø${fmt(spec.diameterMm)}mm, pitch ${fmt(spec.pitchMm)}mm, ${spec.turns} turns`);
 
-  // FRONT VIEW: rectangle of width = diameter, height = totalH
+  // FRONT VIEW: rectangle of width = diameter, height = totalH.
+  // The FV and TV sit side by side (see tvCx below), so the front view is centred in the
+  // band under the title rather than hung off the XY line — the old placement pushed tall
+  // helices (anything rising more than ~67mm) off the bottom of the sheet.
   const fvCx = pageCenterX() - 100;
-  const baseY = xyLineY() + totalH / 2 + 30;
-  const topY = baseY - totalH;
+  const topMargin = 45; // clear of drawTitle at y = 25
+  const bottomMargin = 15;
+  const band = PAGE.heightMm - topMargin - bottomMargin;
+  const topY = topMargin + Math.max(0, (band - totalH) / 2);
+  const baseY = topY + totalH;
 
   builder.line({
     tool: 'T-Square',
@@ -381,7 +387,7 @@ export function buildHelix(spec: HelixSpec): {
 
   // TOP VIEW: circle of radius R, divided into 12 sectors
   const tvCx = pageCenterX() + 100;
-  const tvCy = baseY + 60;
+  const tvCy = (topY + baseY) / 2; // beside the front view, centred on its height
   builder.circle({
     tool: 'Compass',
     instruction: 'Draw the top view (circular section) of the cylinder',

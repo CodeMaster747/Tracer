@@ -3,6 +3,42 @@
  *   npx tsx scripts/smoke-graphics.ts
  */
 import { solveGraphicsQuestion } from '../src/engines/graphics';
+import type { Stroke, StrokeGeometry, PaperSpec, Pt } from '../src/engines/types';
+
+/**
+ * The canvas clips to the paper rect, so a stroke outside the sheet is invisible on screen
+ * and in the export. Treat that as a failure, not a pass.
+ */
+function extentPoints(g: StrokeGeometry): Pt[] {
+  switch (g.kind) {
+    case 'line':
+    case 'arrow':
+      return [
+        { x: g.x1, y: g.y1 },
+        { x: g.x2, y: g.y2 },
+      ];
+    case 'circle':
+    case 'arc':
+      return [
+        { x: g.cx - g.r, y: g.cy - g.r },
+        { x: g.cx + g.r, y: g.cy + g.r },
+      ];
+    case 'curve':
+    case 'polygon':
+      return g.points;
+    case 'text':
+      return [{ x: g.x, y: g.y }];
+  }
+}
+
+function offSheetCount(strokes: Stroke[], paper: PaperSpec): number {
+  let n = 0;
+  for (const s of strokes) {
+    const pts = extentPoints(s.geometry);
+    if (pts.some((p) => p.x < 0 || p.y < 0 || p.x > paper.widthMm || p.y > paper.heightMm)) n++;
+  }
+  return n;
+}
 
 const cases = [
   // Points
@@ -69,8 +105,17 @@ const failures: string[] = [];
 for (const c of cases) {
   const r = solveGraphicsQuestion(c);
   if (r.success) {
-    console.log(`OK  | ${c.slice(0, 90)}`);
-    console.log(`    strokes: ${r.strokes.length}, summary: ${r.summary.slice(0, 90)}…`);
+    const off = offSheetCount(r.strokes, r.paper);
+    if (off > 0) {
+      console.log(`OFF | ${c.slice(0, 90)}`);
+      console.log(
+        `    ${off}/${r.strokes.length} strokes fall outside the ${r.paper.size} ${r.paper.orientation} sheet — they would be clipped`
+      );
+      failures.push(`${c} (${off} stroke(s) off-sheet)`);
+    } else {
+      console.log(`OK  | ${c.slice(0, 90)}`);
+      console.log(`    strokes: ${r.strokes.length}, summary: ${r.summary.slice(0, 90)}…`);
+    }
     ok++;
   } else {
     console.log(`NO  | ${c.slice(0, 90)}`);
@@ -85,7 +130,7 @@ for (const c of cases) {
 
 console.log(`\n--- Summary: ${ok} success, ${no} refusal ---`);
 if (failures.length > 0) {
-  console.log('Unexpected refusals:');
+  console.log('Failures:');
   for (const f of failures) console.log(`  - ${f}`);
   process.exit(1);
 }
