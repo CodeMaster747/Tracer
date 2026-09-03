@@ -108,8 +108,19 @@ export function buildSolidProjection(spec: SolidSpec): SolidResult {
     });
   }
 
-  // Smooth curves for circular bases (cylinder/cone)
-  for (const circle of inclined.circles) {
+  // Smooth curves for circular bases (cylinder/cone). The circle features carry
+  // model-space centres, so they need the same centring shift the vertices got —
+  // without it the ellipse is drawn around the origin, detached from its own solid.
+  // Only the centre moves; uAxis/vAxis are directions.
+  const finalCircles = inclined.circles.map((c) => ({
+    ...c,
+    centre: [c.centre[0] + shiftX, c.centre[1] + shiftDepth, c.centre[2] + shiftZ] as [
+      number,
+      number,
+      number,
+    ],
+  }));
+  for (const circle of finalCircles) {
     drawCircleProjection(builder, circle, finalVerts, fv, tv);
   }
 

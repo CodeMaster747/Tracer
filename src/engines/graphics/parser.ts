@@ -6,6 +6,7 @@ import { buildEllipseConcentric, buildParabolaRectangle } from './conic';
 import { buildCycloid, buildInvoluteOfCircle } from './curves';
 import { buildIsoCube, buildIsoCylinder, buildIsoCone } from './isometric';
 import { buildPlaneProjection, type PlaneOrientation, type PlaneShape } from './plane';
+import { fitToSheet } from './fit';
 import { buildSolidProjection, type AxisPose, type SolidShape } from './solid';
 import { buildSectionOfSolid, type SectionSolidShape } from './section';
 import { buildDevelopment, type DevelopmentSolidShape } from './development';
@@ -48,6 +49,12 @@ const RECOGNISERS: Recogniser[] = [
   /* ---- Section of solids ---- */
   sectionRecogniser(),
 
+  /* ---- Isometric (before the solid projections: "projection of a cylinder" would
+         otherwise match an "isometric projection of a cylinder" question first) ---- */
+  isoCubeRecogniser(),
+  isoCylinderRecogniser(),
+  isoConeRecogniser(),
+
   /* ---- Projections of solids ---- */
   solidProjectionRecogniser(),
 
@@ -82,11 +89,6 @@ const RECOGNISERS: Recogniser[] = [
   /* ---- Plain cycloid / involute ---- */
   cycloidRecogniser(),
   involuteRecogniser(),
-
-  /* ---- Isometric ---- */
-  isoCubeRecogniser(),
-  isoCylinderRecogniser(),
-  isoConeRecogniser(),
 ];
 
 /* ============================================================ *
@@ -678,11 +680,15 @@ function success(result: {
   paper: SolverResult['paper'];
   summary: string;
 }): SolverResult {
+  // Every recogniser returns through here, so this is where we make sure the construction
+  // actually fits the sheet — the canvas clips anything outside it. A drawing that already
+  // fits passes through untouched.
+  const fitted = fitToSheet(result.strokes, result.paper);
   return {
     success: true,
     summary: result.summary,
-    paper: result.paper,
-    strokes: result.strokes,
+    paper: fitted.paper,
+    strokes: fitted.strokes,
   };
 }
 

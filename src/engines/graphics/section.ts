@@ -96,13 +96,26 @@ export function buildSectionOfSolid(spec: SectionSpec): SectionResult {
   const dy = -Math.sin(cutAngle);
   const cutA: Pt = { x: cutPt.x - reach * dx, y: cutPt.y - reach * dy };
   const cutB: Pt = { x: cutPt.x + reach * dx, y: cutPt.y + reach * dy };
+  // cutA/cutB stay long so the intersection maths below is reliable. What gets DRAWN is
+  // clipped to the front view plus a small overrun (as a draughtsman would extend it) and
+  // then to the sheet — a fixed 400mm line ran off the top edge at steep inclinations.
+  const fvPts = verts.map(fv);
+  const overrun = 12;
+  const drawn =
+    clipLineToRect(cutPt, { x: dx, y: dy }, {
+      x0: Math.max(5, Math.min(...fvPts.map((p) => p.x)) - overrun),
+      x1: Math.min(PAGE.widthMm - 5, Math.max(...fvPts.map((p) => p.x)) + overrun),
+      y0: Math.max(5, Math.min(...fvPts.map((p) => p.y)) - overrun),
+      y1: Math.min(PAGE.heightMm - 5, Math.max(...fvPts.map((p) => p.y)) + overrun),
+    }) ?? { from: cutA, to: cutB };
+
   builder.line({
     tool: 'HB Pencil',
     instruction: `Cutting plane line in FV — through height ${fmt(cutZ)}mm above HP, inclined ${
       spec.cutInclinationDeg
     }° to XY`,
-    from: cutA,
-    to: cutB,
+    from: drawn.from,
+    to: drawn.to,
     layer: 'final',
   });
 
@@ -291,6 +304,44 @@ function lineLineIntersection(a1: Pt, a2: Pt, b1: Pt, b2: Pt): Pt | null {
   return {
     x: a1.x + t * (a2.x - a1.x),
     y: a1.y + t * (a2.y - a1.y),
+  };
+}
+
+interface Rect {
+  x0: number;
+  x1: number;
+  y0: number;
+  y1: number;
+}
+
+/**
+ * Clip the infinite line through `p` with direction `d` to `rect` and return the two
+ * endpoints of the part inside it (null when the line misses the rectangle entirely).
+ * Parametric slab clip: each axis narrows the surviving [tMin, tMax] interval.
+ */
+function clipLineToRect(p: Pt, d: Pt, rect: Rect): { from: Pt; to: Pt } | null {
+  if (rect.x1 <= rect.x0 || rect.y1 <= rect.y0) return null;
+  let tMin = -Infinity;
+  let tMax = Infinity;
+  const slabs: Array<[number, number, number, number]> = [
+    [d.x, p.x, rect.x0, rect.x1],
+    [d.y, p.y, rect.y0, rect.y1],
+  ];
+  for (const [dir, origin, lo, hi] of slabs) {
+    if (Math.abs(dir) < 1e-9) {
+      // Line is parallel to this slab: it either lies inside it or misses altogether.
+      if (origin < lo || origin > hi) return null;
+      continue;
+    }
+    const t1 = (lo - origin) / dir;
+    const t2 = (hi - origin) / dir;
+    tMin = Math.max(tMin, Math.min(t1, t2));
+    tMax = Math.min(tMax, Math.max(t1, t2));
+  }
+  if (!Number.isFinite(tMin) || !Number.isFinite(tMax) || tMax - tMin < 1e-6) return null;
+  return {
+    from: { x: p.x + tMin * d.x, y: p.y + tMin * d.y },
+    to: { x: p.x + tMax * d.x, y: p.y + tMax * d.y },
   };
 }
 
