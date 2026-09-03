@@ -14,20 +14,22 @@
     ],
     "headers": [
       {
+        "//": "Every document path must revalidate. Header rules match the REQUEST path, not the file the SPA rewrite resolves to, so a rule on '**/*.html' never covers '/', '/login' or '/app/...' — those fell through to Firebase's default max-age=3600 and pinned browsers to a stale index.html (and therefore to the previous immutable bundle) for an hour after every deploy.",
+        "source": "**",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache, no-store, must-revalidate"
+          }
+        ]
+      },
+      {
+        "//": "Listed last so it wins for hashed assets, which are safe to cache forever.",
         "source": "/assets/**",
         "headers": [
           {
             "key": "Cache-Control",
             "value": "public, max-age=31536000, immutable"
-          }
-        ]
-      },
-      {
-        "source": "**/*.@(html)",
-        "headers": [
-          {
-            "key": "Cache-Control",
-            "value": "no-cache, no-store, must-revalidate"
           }
         ]
       }
