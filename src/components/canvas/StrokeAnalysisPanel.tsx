@@ -10,7 +10,7 @@ export function StrokeAnalysisPanel({ stroke }: Props) {
   return (
     <aside className="w-[280px] shrink-0 border-r border-border-subtle bg-bg-secondary">
       <div className="border-b border-border-subtle px-5 py-4">
-        <div className="text-[10.5px] font-medium uppercase tracking-[0.12em] text-text-muted">
+        <div className="u-label">
           Stroke Analysis
         </div>
       </div>
@@ -30,10 +30,10 @@ export function StrokeAnalysisPanel({ stroke }: Props) {
             <Field label="Instruction" value={stroke.instruction} />
 
             <div>
-              <div className="text-[10.5px] font-medium uppercase tracking-[0.12em] text-text-muted">
+              <div className="u-label">
                 Coordinates
               </div>
-              <div className="mt-2 space-y-2 rounded-lg border border-border-subtle bg-white/[0.02] px-3 py-3">
+              <div className="mt-2 space-y-2 rounded-lg border border-border-subtle bg-ink/[0.02] px-3 py-3">
                 <Coord label="Start" pt={stroke.startMm} />
                 <div className="h-px bg-border-subtle" />
                 <Coord label="End" pt={stroke.endMm} />
@@ -81,7 +81,7 @@ function Field({
 }) {
   return (
     <div>
-      <div className="text-[10.5px] font-medium uppercase tracking-[0.12em] text-text-muted">
+      <div className="u-label">
         {label}
       </div>
       <div

@@ -46,7 +46,7 @@ export default function ProfilePage() {
                 className="h-16 w-16 rounded-full border border-border-subtle"
               />
             ) : (
-              <div className="flex h-16 w-16 items-center justify-center rounded-full border border-border-subtle bg-white/[0.04] text-lg font-semibold text-text-primary">
+              <div className="flex h-16 w-16 items-center justify-center rounded-full border border-border-subtle bg-ink/[0.04] text-lg font-semibold text-text-primary">
                 {(user?.displayName ?? user?.email ?? '?')
                   .slice(0, 2)
                   .toUpperCase()}
@@ -109,8 +109,8 @@ function Field({
   mono?: boolean;
 }) {
   return (
-    <div className="rounded-lg border border-border-subtle bg-white/[0.02] px-4 py-3">
-      <div className="text-[10.5px] font-medium uppercase tracking-[0.12em] text-text-muted">
+    <div className="rounded-lg border border-border-subtle bg-ink/[0.02] px-4 py-3">
+      <div className="u-label">
         {label}
       </div>
       <div

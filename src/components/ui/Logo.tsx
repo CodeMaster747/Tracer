@@ -21,22 +21,22 @@ export function Logo({ size = 24, className, withText = false }: LogoProps) {
           y="1"
           width="30"
           height="30"
-          rx="8"
-          fill="rgba(255, 255, 255, 0.04)"
-          stroke="rgba(255, 255, 255, 0.10)"
+          rx="3"
+          fill="#ffffff"
+          stroke="#d4d8de"
         />
         <path
           d="M8 22 L16 8 L24 22 M11 17 H21"
-          stroke="#f4f4f5"
+          stroke="#14171a"
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
           fill="none"
         />
-        <circle cx="16" cy="8" r="1.6" fill="#f4f4f5" />
+        <circle cx="16" cy="8" r="1.6" fill="#14171a" />
       </svg>
       {withText && (
-        <span className="text-[15px] font-semibold tracking-tight text-text-primary">
+        <span className="font-display text-[17px] font-medium tracking-tight text-text-primary">
           Tracer
         </span>
       )}

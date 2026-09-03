@@ -1,2 +1,2 @@
 /** Cool slate-blue accent for the Automata workspace. */
-export const AUTOMATA_ACCENT = '#7DA9E7';
+export const AUTOMATA_ACCENT = '#1c6b84';

@@ -97,7 +97,7 @@ function getCommands(ctx: WorkspaceContext): Command[] {
 export const DraftingModule: WorkspaceModule = {
   id: 'graphics',
   displayName: 'Drafting',
-  accent: { hex: '#C7A26B', label: 'graphite gold' },
+  accent: { hex: '#2b55c0', label: 'drafting blue' },
   getViewport,
   getTotalSteps: (q) => q.strokes.length,
   getMetaLine: (q) => `${q.paper.widthMm} × ${q.paper.heightMm} mm`,

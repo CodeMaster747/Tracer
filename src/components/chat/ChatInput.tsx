@@ -45,8 +45,8 @@ export function ChatInput({ onSend, disabled, placeholder }: Props) {
         className={cn(
           'flex h-9 w-9 shrink-0 items-center justify-center rounded-lg transition-colors duration-150',
           ready
-            ? 'bg-text-primary text-bg-primary hover:bg-white'
-            : 'bg-white/[0.04] text-text-muted'
+            ? 'bg-accent-primary text-white hover:bg-accent-secondary'
+            : 'bg-ink/[0.04] text-text-muted'
         )}
         aria-label="Send"
       >

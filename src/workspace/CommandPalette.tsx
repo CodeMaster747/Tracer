@@ -98,7 +98,7 @@ export function CommandPalette({ open, onClose, ctx, commands }: Props) {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.12 }}
-          className="fixed inset-0 z-50 flex items-start justify-center bg-black/60 p-4 pt-[14vh] backdrop-blur-sm"
+          className="fixed inset-0 z-50 flex items-start justify-center bg-ink/[0.35] p-4 pt-[14vh] backdrop-blur-sm"
           onClick={onClose}
         >
           <motion.div
@@ -158,7 +158,7 @@ export function CommandPalette({ open, onClose, ctx, commands }: Props) {
               ) : (
                 grouped.map((g) => (
                   <div key={g.group}>
-                    <div className="border-b border-border-subtle/60 bg-bg-secondary/40 px-4 py-1.5 text-[10px] font-medium uppercase tracking-[0.12em] text-text-muted">
+                    <div className="border-b border-border-subtle/60 bg-bg-secondary/40 px-4 py-1.5 u-label">
                       {g.group}
                     </div>
                     {g.items.map((cmd) => {
@@ -173,8 +173,8 @@ export function CommandPalette({ open, onClose, ctx, commands }: Props) {
                           className={cn(
                             'flex w-full items-center gap-3 px-4 py-2.5 text-left text-[13px] transition-colors duration-100',
                             active
-                              ? 'bg-white/[0.06]'
-                              : 'hover:bg-white/[0.03]'
+                              ? 'bg-ink/[0.06]'
+                              : 'hover:bg-ink/[0.03]'
                           )}
                         >
                           <CommandGlyph icon={cmd.icon} />

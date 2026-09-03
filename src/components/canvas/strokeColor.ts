@@ -16,12 +16,12 @@ export interface StrokeColors {
 }
 
 const COLORS = {
-  pending: '#3a3a44',
-  drawing: '#ef4444',
-  active: '#3b82f6',
-  accepting: '#10b981',
-  done: '#1f2937',
-  hover: '#a18aff',
+  pending: '#b0b6be',
+  drawing: '#2b55c0',
+  active: '#2b55c0',
+  accepting: '#177a4c',
+  done: '#14171a',
+  hover: '#5b7fd4',
 };
 
 export function getStrokeColors(
@@ -47,7 +47,7 @@ export function getStrokeColors(
   } else if (stroke.marker === 'start') {
     color = COLORS.active;
   } else {
-    color = isLabel ? '#0a0a0a' : COLORS.done;
+    color = isLabel ? '#14171a' : COLORS.done;
   }
 
   if (hovered && status !== 'pending') {

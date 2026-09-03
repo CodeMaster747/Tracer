@@ -107,7 +107,7 @@ function TransitionTableSection({ meta }: { meta: AutomataMeta }) {
           </thead>
           <tbody>
             {table.rows.map((row, r) => (
-              <tr key={r} className="hover:bg-white/[0.02]">
+              <tr key={r} className="hover:bg-ink/[0.02]">
                 {row.map((cell, c) => (
                   <td
                     key={c}
@@ -153,7 +153,7 @@ function SimulationSection({ meta }: { meta: AutomataMeta }) {
         </span>
       }
     >
-      <div className="mb-3 rounded-md border border-border-subtle bg-white/[0.02] px-3 py-2">
+      <div className="mb-3 rounded-md border border-border-subtle bg-ink/[0.02] px-3 py-2">
         <div className="text-[10px] uppercase tracking-[0.12em] text-text-muted">
           Input
         </div>
@@ -312,7 +312,7 @@ function ConversionRow({ label, example }: { label: string; example: string }) {
   return (
     <button
       onClick={copy}
-      className="group flex w-full items-center justify-between rounded-md border border-border-subtle bg-white/[0.02] px-2.5 py-2 text-left transition-colors duration-150 hover:bg-white/[0.04]"
+      className="group flex w-full items-center justify-between rounded-md border border-border-subtle bg-ink/[0.02] px-2.5 py-2 text-left transition-colors duration-150 hover:bg-ink/[0.04]"
       title={`Copy "${example}" to clipboard`}
     >
       <span className="text-[12px] text-text-primary">{label}</span>

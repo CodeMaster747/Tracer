@@ -92,7 +92,7 @@ function truncate(s: string, n: number): string {
 export const SystemsModule: WorkspaceModule = {
   id: 'control',
   displayName: 'Control',
-  accent: { hex: '#7EC4A6', label: 'signal green' },
+  accent: { hex: '#177a4c', label: 'response green' },
   getViewport,
   getTotalSteps: (q) => q.strokes.length,
   getMetaLine,

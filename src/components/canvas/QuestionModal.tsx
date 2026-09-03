@@ -17,7 +17,7 @@ export function QuestionModal({ open, question, summary, onClose }: Props) {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.15 }}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-ink/[0.35] backdrop-blur-sm p-4"
           onClick={onClose}
         >
           <motion.div
@@ -37,8 +37,8 @@ export function QuestionModal({ open, question, summary, onClose }: Props) {
               <p className="text-sm leading-relaxed text-text-primary">
                 {question}
               </p>
-              <div className="rounded-lg border border-border-subtle bg-white/[0.02] px-4 py-3">
-                <div className="text-[10.5px] font-medium uppercase tracking-[0.12em] text-text-muted">
+              <div className="rounded-lg border border-border-subtle bg-ink/[0.02] px-4 py-3">
+                <div className="u-label">
                   Summary
                 </div>
                 <p className="mt-1.5 text-sm leading-relaxed text-text-secondary">
